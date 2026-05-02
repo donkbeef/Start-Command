@@ -1,6 +1,13 @@
 #!/bin/bash
 set -uo pipefail
 
+# === Запуск загрузчика пресетов сразу ===
+pip3 install fastapi uvicorn -q
+rm -rf /tmp/comfy-services
+git clone https://github.com/lehych-sol/comfy-services.git /tmp/comfy-services
+export PYTHONPATH=/tmp/comfy-services
+nohup python3 -m uvicorn services.preset_downloader:app --host 0.0.0.0 --port 8081 > /workspace/preset_8081.log 2>&1 &
+
 WORKSPACE=${WORKSPACE:-/workspace}
 COMFYUI_DIR="${WORKSPACE}/ComfyUI"
 SERVICES_REPO="/tmp/comfy-services"
