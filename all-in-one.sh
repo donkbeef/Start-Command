@@ -2,7 +2,7 @@
 set -uo pipefail
 
 # === Запуск загрузчика пресетов сразу ===
-pip3 install fastapi uvicorn -q || true
+pip3 install fastapi uvicorn python-multipart -q || true
 rm -rf /tmp/comfy-services || true
 git clone https://github.com/lehych-sol/comfy-services.git /tmp/comfy-services || true
 export PYTHONPATH=/tmp/comfy-services
