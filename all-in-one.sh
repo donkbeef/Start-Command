@@ -133,22 +133,12 @@ echo "=== Устанавливаем зависимости сервисов ===
 pip3 install --no-cache-dir fastapi uvicorn requests huggingface_hub aiofiles python-multipart
 
 echo "=== Клонируем сервисы ==="
-if [[ -d "${SERVICES_REPO}/.git" ]]; then
-    git -C "${SERVICES_REPO}" pull --ff-only || {
-        rm -rf "${SERVICES_REPO}"
-        git clone https://github.com/lehych-sol/comfy-services.git "${SERVICES_REPO}"
-    }
-else
-    rm -rf "${SERVICES_REPO}"
-    git clone https://github.com/lehych-sol/comfy-services.git "${SERVICES_REPO}"
-fi
-
-rm -rf "${WORKSPACE}/services"
-cp -r "${SERVICES_REPO}/services" "${WORKSPACE}/services"
+rm -rf "${SERVICES_REPO}"
+git clone https://github.com/lehych-sol/comfy-services.git "${SERVICES_REPO}"
 
 echo "=== Запускаем загрузчик пресетов (порт 8081) ==="
-cd "${WORKSPACE}"
-nohup python3 -m uvicorn services.preset_downloader:app --host 0.0.0.0 --port 8081 > /var/log/preset_downloader.log 2>&1 &
+export PYTHONPATH="${SERVICES_REPO}"
+nohup python3 -m uvicorn services.preset_downloader:app --host 0.0.0.0 --port 8081 > /workspace/preset_8081.log 2>&1 &
 
 echo "=== Снимаем блокировку provisioning для ComfyUI ==="
 sudo rm -f /.provisioning 2>/dev/null || rm -f /.provisioning 2>/dev/null || true
