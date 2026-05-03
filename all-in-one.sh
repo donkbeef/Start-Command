@@ -122,7 +122,7 @@ function provisioning_get_nodes() {
     done
 }
 
-if [[ ! -f /.noprovisioning && ! -f "${COMFYUI_DIR}/main.py" ]]; then
+if [[ ! -f /.noprovisioning ]]; then
     provisioning_start
 fi
 
