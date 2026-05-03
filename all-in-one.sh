@@ -155,7 +155,7 @@ disown
 
 echo "=== Запускаем ComfyUI (порт 8188) ==="
 cd "${COMFYUI_DIR}"
-nohup /venv/main/bin/python main.py --listen 0.0.0.0 --port 8188 --enable-cors-headers > /var/log/comfyui.log 2>&1 &
+nohup /venv/main/bin/python main.py --listen 0.0.0.0 --port 8188 --enable-cors-header > /var/log/comfyui.log 2>&1 &
 disown
 
 echo "=== Снимаем блокировку provisioning для ComfyUI ==="
