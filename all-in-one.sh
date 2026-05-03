@@ -122,7 +122,7 @@ path="./${custom_dir}"
     done
 }
 
-if [[ ! -f /.noprovisioning  ! -f "${COMFYUI_DIR}/main.py" ]]; then
+if [[ ! -f /.noprovisioning && ! -f "${COMFYUI_DIR}/main.py" ]]; then
     provisioning_start
 fi
 
