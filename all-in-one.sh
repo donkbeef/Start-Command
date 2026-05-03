@@ -136,7 +136,7 @@ pip install --no-cache-dir fastapi uvicorn requests huggingface_hub aiofiles pyt
 
 echo "=== Клонируем сервисы ==="
 if [[ -d "${SERVICES_REPO}/.git" ]]; then
-    git -C "${SERVICES_REPO}" pull --ff-only  {
+    git -C "${SERVICES_REPO}" pull --ff-only || {
         rm -rf "${SERVICES_REPO}"
         git clone https://github.com/lehych-sol/comfy-services.git "${SERVICES_REPO}"
     }
