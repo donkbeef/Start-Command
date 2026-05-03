@@ -1,12 +1,7 @@
 #!/bin/bash
 set -uo pipefail
 
-# === Запуск загрузчика пресетов сразу ===
-pip3 install fastapi uvicorn python-multipart -q || true
-rm -rf /tmp/comfy-services || true
-git clone https://github.com/lehych-sol/comfy-services.git /tmp/comfy-services || true
-export PYTHONPATH=/tmp/comfy-services
-nohup python3 -m uvicorn services.preset_downloader:app --host 0.0.0.0 --port 8081 > /workspace/preset_8081.log 2>&1 &
+source /venv/main/bin/activate
 
 WORKSPACE=${WORKSPACE:-/workspace}
 COMFYUI_DIR="${WORKSPACE}/ComfyUI"
@@ -114,20 +109,20 @@ function provisioning_get_nodes() {
             custom_dir="${repo##*/}"
         fi
 
-        path="./${custom_dir}"
+path="./${custom_dir}"
         if [[ -d "${path}/.git" ]]; then
-            (cd "${path}" && git pull --ff-only) || echo "WARN: не удалось обновить ${custom_dir}, пропускаю"
+            (cd "${path}" && git pull --ff-only)  echo "WARN: не удалось обновить ${custom_dir}, пропускаю"
         else
             git clone --recursive "${repo}" "${path}"
         fi
 
         if [[ -f "${path}/requirements.txt" ]]; then
-            pip install --no-cache-dir -r "${path}/requirements.txt" || echo "WARN: requirements failed for ${custom_dir}, продолжаю"
+            pip install --no-cache-dir -r "${path}/requirements.txt"  echo "WARN: requirements failed for ${custom_dir}, продолжаю"
         fi
     done
 }
 
-if [[ ! -f /.noprovisioning || ! -f "${COMFYUI_DIR}/main.py" ]]; then
+if [[ ! -f /.noprovisioning  ! -f "${COMFYUI_DIR}/main.py" ]]; then
     provisioning_start
 fi
 
@@ -137,17 +132,28 @@ if [[ ! -f "${COMFYUI_DIR}/main.py" ]]; then
 fi
 
 echo "=== Устанавливаем зависимости сервисов ==="
-pip3 install --no-cache-dir fastapi uvicorn requests huggingface_hub aiofiles python-multipart
+pip install --no-cache-dir fastapi uvicorn requests huggingface_hub aiofiles python-multipart
 
 echo "=== Клонируем сервисы ==="
-rm -rf "${SERVICES_REPO}"
-git clone https://github.com/lehych-sol/comfy-services.git "${SERVICES_REPO}"
+if [[ -d "${SERVICES_REPO}/.git" ]]; then
+    git -C "${SERVICES_REPO}" pull --ff-only  {
+        rm -rf "${SERVICES_REPO}"
+        git clone https://github.com/lehych-sol/comfy-services.git "${SERVICES_REPO}"
+    }
+else
+    rm -rf "${SERVICES_REPO}"
+    git clone https://github.com/lehych-sol/comfy-services.git "${SERVICES_REPO}"
+fi
+
+rm -rf "${WORKSPACE}/services"
+cp -r "${SERVICES_REPO}/services" "${WORKSPACE}/services"
 
 echo "=== Запускаем загрузчик пресетов (порт 8081) ==="
-export PYTHONPATH="${SERVICES_REPO}"
-nohup python3 -m uvicorn services.preset_downloader:app --host 0.0.0.0 --port 8081 > /workspace/preset_8081.log 2>&1 &
+cd "${WORKSPACE}"
+nohup /venv/main/bin/uvicorn services.preset_downloader:app --host 0.0.0.0 --port 8081 > /var/log/preset_downloader.log 2>&1 &
+disown
 
 echo "=== Снимаем блокировку provisioning для ComfyUI ==="
-sudo rm -f /.provisioning 2>/dev/null || rm -f /.provisioning 2>/dev/null || true
+sudo rm -f /.provisioning 2>/dev/null  rm -f /.provisioning 2>/dev/null  true
 
 echo "=== Provisioning завершён, ComfyUI запустится автоматически ==="
