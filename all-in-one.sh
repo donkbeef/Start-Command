@@ -111,7 +111,7 @@ function provisioning_get_nodes() {
 
 path="./${custom_dir}"
         if [[ -d "${path}/.git" ]]; then
-            (cd "${path}" && git pull --ff-only)  echo "WARN: не удалось обновить ${custom_dir}, пропускаю"
+            (cd "${path}" && git pull --ff-only) || echo "WARN: не удалось обновить ${custom_dir}, пропускаю"
         else
             git clone --recursive "${repo}" "${path}"
         fi
