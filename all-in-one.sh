@@ -109,7 +109,7 @@ function provisioning_get_nodes() {
             custom_dir="${repo##*/}"
         fi
 
-path="./${custom_dir}"
+        path="./${custom_dir}"
         if [[ -d "${path}/.git" ]]; then
             (cd "${path}" && git pull --ff-only) || echo "WARN: не удалось обновить ${custom_dir}, пропускаю"
         else
@@ -117,7 +117,7 @@ path="./${custom_dir}"
         fi
 
         if [[ -f "${path}/requirements.txt" ]]; then
-            pip install --no-cache-dir -r "${path}/requirements.txt"  echo "WARN: requirements failed for ${custom_dir}, продолжаю"
+            pip install --no-cache-dir -r "${path}/requirements.txt" || echo "WARN: requirements failed for ${custom_dir}, продолжаю"
         fi
     done
 }
@@ -153,7 +153,12 @@ cd "${WORKSPACE}"
 nohup /venv/main/bin/uvicorn services.preset_downloader:app --host 0.0.0.0 --port 8081 > /var/log/preset_downloader.log 2>&1 &
 disown
 
+echo "=== Запускаем ComfyUI (порт 8188) ==="
+cd "${COMFYUI_DIR}"
+nohup /venv/main/bin/python main.py --listen 0.0.0.0 --port 8188 > /var/log/comfyui.log 2>&1 &
+disown
+
 echo "=== Снимаем блокировку provisioning для ComfyUI ==="
-sudo rm -f /.provisioning 2>/dev/null  rm -f /.provisioning 2>/dev/null  true
+sudo rm -f /.provisioning 2>/dev/null || rm -f /.provisioning 2>/dev/null || true
 
 echo "=== Provisioning завершён, ComfyUI запустится автоматически ==="
