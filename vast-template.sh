@@ -16,7 +16,7 @@ APT_PACKAGES=(
 PIP_PACKAGES=()
 
 NODES=(
-    "https://github.com/ltdrdata/ComfyUI-Manager"
+  "https://github.com/ltdrdata/ComfyUI-Manager"
     "https://github.com/lehych-sol/Zen-Face-Detail"
     "https://github.com/lehych-sol/Camera-Forensic-Realism"
     "https://github.com/lehych-sol/Custom-Nodes-by-lehych"
@@ -28,6 +28,7 @@ NODES=(
     "https://github.com/ltdrdata/ComfyUI-Impact-Pack"
     "https://github.com/pythongosssss/ComfyUI-Custom-Scripts"
     "https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler"
+    "https://github.com/darkamenosa/comfy_nanobanana"
     "https://github.com/chflame163/ComfyUI_LayerStyle"
     "https://github.com/lehych-sol/geek-nodes"
     "https://github.com/lehych-sol/custom-nodes"
