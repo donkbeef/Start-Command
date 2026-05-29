@@ -272,11 +272,32 @@ cd "${COMFYUI_DIR}"
 nohup /venv/main/bin/python main.py --listen 0.0.0.0 --port 8188 --enable-cors-header > /var/log/comfyui.log 2>&1 &
 disown
 
+# === ФИКС: надёжное удаление /.provisioning ===
 echo "=== Снимаем блокировку provisioning для ComfyUI ==="
-if command -v sudo >/dev/null 2>&1; then
-    sudo rm -f /.provisioning 2>/dev/null || rm -f /.provisioning 2>/dev/null || true
-else
-    rm -f /.provisioning 2>/dev/null || true
+PROVISIONING_REMOVED=false
+for attempt in 1 2 3; do
+    if [[ ! -f /.provisioning ]]; then
+        echo "/.provisioning уже не существует"
+        PROVISIONING_REMOVED=true
+        break
+    fi
+    if rm -f /.provisioning 2>/dev/null; then
+        echo "/.provisioning удалён (без sudo)"
+        PROVISIONING_REMOVED=true
+        break
+    fi
+    if sudo rm -f /.provisioning 2>/dev/null; then
+        echo "/.provisioning удалён (sudo)"
+        PROVISIONING_REMOVED=true
+        break
+    fi
+    echo "WARN: попытка ${attempt} не удалась, жду 2 секунды..."
+    sleep 2
+done
+
+if [[ "${PROVISIONING_REMOVED}" == "false" ]]; then
+    echo "ERROR: не удалось удалить /.provisioning после 3 попыток!"
+    echo "Попробуй вручную: sudo rm -f /.provisioning"
 fi
 
 echo "=== Provisioning завершён, ComfyUI запущен ==="
