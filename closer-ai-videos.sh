@@ -18,21 +18,13 @@ PIP_PACKAGES=()
 
 NODES=(
    "https://github.com/ltdrdata/ComfyUI-Manager"
-    "https://github.com/kijai/ComfyUI-PromptRelay"
-    "https://github.com/Saganaki22/ComfyUI-FishAudioS2"
-    "https://github.com/MONKEYFOREVER2/comfyui-quantum-spectral-nodes"
     "https://github.com/kijai/ComfyUI-WanVideoWrapper"
     "https://github.com/ltdrdata/ComfyUI-Impact-Pack"
     "https://github.com/pythongosssss/ComfyUI-Custom-Scripts"
-    "https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler"
     "https://github.com/chflame163/ComfyUI_LayerStyle"
-    "https://github.com/donkbeef/geek-nodes"
     "https://github.com/donkbeef/custom-nodes"
-    "https://github.com/Lightricks/ComfyUI-LTXVideo"
     "https://github.com/PGCRT/CRT-Nodes CRT-Nodes-PGCRT"
     "https://github.com/Jasonzzt/ComfyUI-CacheDiT"
-    "https://github.com/thatboymentor/ofmtechclip"
-    "https://github.com/scraed/LanPaint"
     "https://github.com/rgthree/rgthree-comfy"
     "https://github.com/yolain/ComfyUI-Easy-Use"
     "https://github.com/facok/comfyui-meancache-z"
@@ -42,7 +34,6 @@ NODES=(
     "https://github.com/chrisgoringe/cg-use-everywhere"
     "https://github.com/ltdrdata/ComfyUI-Impact-Subpack"
     "https://github.com/Smirnov75/ComfyUI-mxToolkit"
-    "https://github.com/TheLustriVA/ComfyUI-Image-Size-Tools"
     "https://github.com/ZhiHui6/zhihui_nodes_comfyui"
     "https://github.com/kijai/ComfyUI-KJNodes"
     "https://github.com/crystian/ComfyUI-Crystools"
@@ -52,7 +43,6 @@ NODES=(
     "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
     "https://github.com/lehych-ai/ComfyUI-WanAnimatePreprocess"
     "https://github.com/GACLove/ComfyUI-VFI"
-    "https://github.com/ShmuelRonen/ComfyUI-FishSpeech"
 )
 
 WAN_FP8_MODELS=(
