@@ -100,7 +100,7 @@ DETECTION_MODELS=(
 )
 
 WORKFLOW_FILES=(
-    "https://huggingface.co/lehychh/closer-ai-workflows/resolve/main/photo_heaven_v2.json"
+    "https://huggingface.co/lehychh/closer-ai-workflows/resolve/main/workflow_heaven_2.json"
     "https://huggingface.co/lehychh/closer-ai-workflows/resolve/main/lipsyncmode.json"
 )
 
