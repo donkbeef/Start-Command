@@ -73,6 +73,10 @@ UPSCALE_MODELS=(
 ULTRALYTICS_BBOX_MODELS=(
     "https://huggingface.co/lehychh/Z-image-Turbo/resolve/main/face_yolov9c.pt"
     "https://huggingface.co/lehychh/Z-image-Turbo/resolve/main/Eyes.pt"
+    "https://huggingface.co/lehychh/Z-image-Turbo/resolve/main/nipple.pt"
+    "https://huggingface.co/lehychh/Z-image-Turbo/resolve/main/vagina-v4.2.pt"
+    "https://huggingface.co/lehychh/Z-image-Turbo/resolve/main/hand_yolov8s.pt"
+    "https://huggingface.co/lehychh/Z-image-Turbo/resolve/main/assdetailer-seg.pt"
 )
 
 ULTRALYTICS_SEGM_MODELS=(
@@ -83,9 +87,18 @@ MODEL_PATCHES=(
     "https://huggingface.co/lehychh/Z-image-Turbo/resolve/main/Z-Image-Turbo-Fun-Controlnet-Union-2.1-2602-8steps.safetensors"
 )
 
+LORA_MODELS=(
+    "https://huggingface.co/lehychh/Z-image-Turbo/resolve/main/pussy_lily_v5_XL.safetensors"
+)
+
+CHECKPOINT_MODELS=(
+    "https://huggingface.co/lehychh/Z-image-Turbo/resolve/main/lustifySDXLNSFW_V7.safetensors"
+)
+
 WORKFLOW_FILES=(
-    "https://huggingface.co/lehychh/closer-ai-workflows/resolve/main/workflow_heaven_2.json"
-    "https://huggingface.co/lehychh/closer-ai-workflows/resolve/main/lipsyncmode.json"
+    "https://huggingface.co/lehychh/closer-ai-workflows/resolve/main/photo_heaven_v2.json"
+    "https://huggingface.co/lehychh/closer-ai-workflows/resolve/main/ZIT%20by%20CloserAI%20t2i%20SFW.json"
+    "https://huggingface.co/lehychh/closer-ai-workflows/resolve/main/ZIT%20by%20CloserAI%20t2i%20NSFW.json"
 )
 
 function provisioning_start() {
@@ -208,7 +221,9 @@ function provisioning_get_models() {
         "${COMFYUI_DIR}/models/upscale_models" \
         "${COMFYUI_DIR}/models/ultralytics/bbox" \
         "${COMFYUI_DIR}/models/ultralytics/segm" \
-        "${COMFYUI_DIR}/models/model_patches"
+        "${COMFYUI_DIR}/models/model_patches" \
+        "${COMFYUI_DIR}/models/loras" \
+        "${COMFYUI_DIR}/models/checkpoints"
 
     download_files "${COMFYUI_DIR}/models/diffusion_models" "${DIFFUSION_MODELS[@]}"
     download_files "${COMFYUI_DIR}/models/vae"              "${VAE_MODELS[@]}"
@@ -218,6 +233,8 @@ function provisioning_get_models() {
     download_files "${COMFYUI_DIR}/models/ultralytics/bbox" "${ULTRALYTICS_BBOX_MODELS[@]}"
     download_files "${COMFYUI_DIR}/models/ultralytics/segm" "${ULTRALYTICS_SEGM_MODELS[@]}"
     download_files "${COMFYUI_DIR}/models/model_patches"    "${MODEL_PATCHES[@]}"
+    download_files "${COMFYUI_DIR}/models/loras"            "${LORA_MODELS[@]}"
+    download_files "${COMFYUI_DIR}/models/checkpoints"      "${CHECKPOINT_MODELS[@]}"
 
     echo "=== Загрузка моделей завершена ==="
 }
