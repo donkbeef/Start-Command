@@ -22,6 +22,7 @@ NODES=(
     "https://github.com/pythongosssss/ComfyUI-Custom-Scripts"
     "https://github.com/chflame163/ComfyUI_LayerStyle"
     "https://github.com/PGCRT/CRT-Nodes CRT-Nodes-PGCRT"
+    "https://github.com/MONKEYFOREVER2/comfyui-quantum-spectral-nodes"
     "https://github.com/rgthree/rgthree-comfy"
     "https://github.com/yolain/ComfyUI-Easy-Use"
     "https://github.com/facok/comfyui-meancache-z"
