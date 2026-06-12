@@ -41,7 +41,7 @@ NODES=(
     "https://github.com/EllangoK/ComfyUI-post-processing-nodes"
     "https://github.com/Fannovel16/comfyui_controlnet_aux"
     "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
-    "https://github.com/lehych-ai/ComfyUI-WanAnimatePreprocess"
+    "https://github.com/kijai/ComfyUI-WanAnimatePreprocess"
     "https://github.com/GACLove/ComfyUI-VFI"
 )
 
@@ -96,7 +96,6 @@ DETECTION_MODELS=(
     "https://huggingface.co/lehychh/Wan-animate-v2v/resolve/main/detection/vitpose_h_wholebody_model.onnx"
     "https://huggingface.co/lehychh/Wan-animate-v2v/resolve/main/detection/vitpose_h_wholebody_data.bin"
     "https://huggingface.co/lehychh/Wan-animate-v2v/resolve/main/detection/yolov10m.onnx", "detection"
-    "https://huggingface.co/Kijai/vitpose_comfy/resolve/main/onnx/vitpose_h_wholebody_data.bin"
 )
 
 WORKFLOW_FILES=(
