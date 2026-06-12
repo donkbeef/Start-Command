@@ -45,16 +45,16 @@ NODES=(
     "https://github.com/GACLove/ComfyUI-VFI"
 )
 
-WAN_FP8_MODELS=(
-    "https://huggingface.co/Kijai/WanVideo_comfy_fp8_scaled/resolve/main/SteadyDancer/Wan21_SteadyDancer_fp8_e4m3fn_scaled_KJ.safetensors"
-)
-
 LORA_MODELS=(
-    "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Lightx2v/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors"
+    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors"
+    "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Lightx2v/lightx2v_T2V_14B_cfg_step_distill_v2_lora_rank256_bf16.safetensors"
+    "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Pusa/Wan21_PusaV1_LoRA_14B_rank512_bf16.safetensors"
+    "https://huggingface.co/alibaba-pai/Wan2.2-Fun-Reward-LoRAs/resolve/main/Wan2.2-Fun-A14B-InP-low-noise-MPS.safetensors"
+    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_animate_14B_relight_lora_bf16.safetensors"
 )
 
 VAE_MODELS=(
-    "https://huggingface.co/Kijai/WanVideo_comfy/resolve/a328a632b80d44062fda7df9b6b1a7b2c3a5cf2c/Wan2_1_VAE_bf16.safetensors"
+    "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wan2_1_VAE_bf16.safetensors"
 )
 
 CLIP_VISION_MODELS=(
@@ -62,15 +62,15 @@ CLIP_VISION_MODELS=(
 )
 
 TEXT_ENCODER_MODELS=(
-    "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp16.safetensors"
+    "https://huggingface.co/lehychh/Wan-animate-v2v/resolve/main/clip/umt5_xxl_fp16.safetensors"
 )
 
 UPSCALE_MODELS=(
-    "https://raw.githubusercontent.com/gamefurius32-lgtm/upsclane1xskin/main/1xSkinContrast-SuperUltraCompact%20(3).pth"
+    "https://huggingface.co/lehychh/Wan-animate-v2v/resolve/main/controlnet/Wan21_Uni3C_controlnet_fp16.safetensors"
 )
 
 WAN_ANIMATE_MODELS=(
-    "https://huggingface.co/Kijai/WanVideo_comfy_fp8_scaled/resolve/main/Wan22Animate/Wan2_2-Animate-14B_fp8_scaled_e4m3fn_KJ_v2.safetensors"
+    "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_animate_14B_bf16.safetensors"
 )
 
 LORA_MODELS_EXTRA=(
@@ -89,13 +89,13 @@ VAE_MODELS_NEW=(
 )
 
 CLIP_VISION_NEW=(
-    "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/clip_vision/clip_vision_h.safetensors"
+    "https://huggingface.co/lehychh/Wan-animate-v2v/resolve/main/clip_vision/clip_vision_h.safetensors"
 )
 
 DETECTION_MODELS=(
-    "https://huggingface.co/JunkyByte/easy_ViTPose/resolve/main/onnx/wholebody/vitpose-l-wholebody.onnx"
-    "https://huggingface.co/Wan-AI/Wan2.2-Animate-14B/resolve/main/process_checkpoint/det/yolov10m.onnx"
-    "https://huggingface.co/Kijai/vitpose_comfy/resolve/main/onnx/vitpose_h_wholebody_model.onnx"
+    "https://huggingface.co/lehychh/Wan-animate-v2v/resolve/main/detection/vitpose_h_wholebody_model.onnx"
+    "https://huggingface.co/lehychh/Wan-animate-v2v/resolve/main/detection/vitpose_h_wholebody_data.bin"
+    "https://huggingface.co/lehychh/Wan-animate-v2v/resolve/main/detection/yolov10m.onnx", "detection"
     "https://huggingface.co/Kijai/vitpose_comfy/resolve/main/onnx/vitpose_h_wholebody_data.bin"
 )
 
@@ -242,7 +242,7 @@ function provisioning_get_models() {
     download_files "${COMFYUI_DIR}/models/text_encoders" "${TEXT_ENCODER_MODELS[@]}"
     download_files "${COMFYUI_DIR}/models/text_encoders" "${TEXT_ENCODER_FP8[@]}"
 
-    download_files "${COMFYUI_DIR}/models/upscale_models" "${UPSCALE_MODELS[@]}"
+    download_files "${COMFYUI_DIR}/models/controlnet" "${UPSCALE_MODELS[@]}"
 
     download_files "${COMFYUI_DIR}/models/detection" "${DETECTION_MODELS[@]}"
 
