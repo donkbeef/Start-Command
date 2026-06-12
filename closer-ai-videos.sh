@@ -102,6 +102,8 @@ DETECTION_MODELS=(
 WORKFLOW_FILES=(
     "https://huggingface.co/lehychh/closer-ai-workflows/resolve/main/workflow_heaven_2.json"
     "https://huggingface.co/lehychh/closer-ai-workflows/resolve/main/lipsyncmode.json"
+    "https://huggingface.co/lehychh/closer-ai-workflows/resolve/main/WanAnimate-movement.json"
+    "https://huggingface.co/lehychh/closer-ai-workflows/resolve/main/WanAnimate-static.json"
 )
 
 function provisioning_start() {
