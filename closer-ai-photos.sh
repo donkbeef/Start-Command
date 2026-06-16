@@ -26,7 +26,7 @@ NODES=(
     "https://github.com/rgthree/rgthree-comfy"
     "https://github.com/yolain/ComfyUI-Easy-Use"
     "https://github.com/facok/comfyui-meancache-z"
-    "https://github.com/teskor-hub/comfyui-teskors-utils"
+    "https://github.com/donkbeef/custom-nodes"
     "https://github.com/ClownsharkBatwing/RES4LYF"
     "https://github.com/chrisgoringe/cg-use-everywhere"
     "https://github.com/ltdrdata/ComfyUI-Impact-Subpack"
